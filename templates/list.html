@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% block title %}All Todo's{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-10" style="margin: 0 auto;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="justify-content: space-between">
+            <a class="btn btn-success" href="{% url 'sortdata' %}">Sort By Priority</a>
+            <form action="{% url 'searchdata' %}" style="display: flex">
+                <label for="query" style="width: 180px;margin-top: 7px">Search By Title</label>
+                <input type="search" class="form-control" name="query" id="query">
+                <button type="submit" class="btn btn-primary" style="display: block">Search</button>
+            </form>
+
+        </nav>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-md-10" style="margin:0px auto;">
+        <table class="table table-bordered table-sm font-weight-bold text-center text-black-50">
+            <thead class="bg-info">
+            <tr>
+                <th>Task</th>
+                <th>Priority</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for eachtodo in alltodos %}
+                <tr>
+                    <td>{{eachtodo.task}} </td>
+                    
+                    <td>{{eachtodo.priority}}</td>
+                    
+                    <td>
+                        <a href="/delete/{{eachtodo.id}}">
+                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+                </tbody>
+                </table>
+                </div>
+                </div>
+
+{% endblock %}
